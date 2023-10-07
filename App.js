@@ -19,4 +19,5 @@ export default function App() {
   }, [])
   if (session == null) return <Loading show={true} text='Cargando' />
   return session ? <NavigationLogged /> : <Navigation/>
+  console.disableYellowBox = true;
 }
