@@ -10,10 +10,6 @@ import {
   Avatar,
   PaperProvider,
 } from "react-native-paper";
-import { isEmpty } from "lodash";
-import Loading from "./../../../../kernel/components/Loading";
-import connectionConekta from "../../../../kernel/connectionConekta";
-import axios from "axios";
 import client from "../../../../kernel/http-client.gateway";
 
 
@@ -285,9 +281,9 @@ export default function PayScreen() {
           <Card.Content>
             <Text variant="titleLarge">Selecciona un método de pago</Text>
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{ paddingVertical: 20,flexDirection: "row", justifyContent: "space-between" }}
             >
-              <Button icon="cash" mode="contained" onPress={showModal}>
+              <Button  icon="cash" mode="contained" onPress={showModal}>
                 Efectivo
               </Button>
               <Button
@@ -299,9 +295,7 @@ export default function PayScreen() {
               </Button>
             </View>
           </Card.Content>
-          <Card.Actions>
-            <Button>PAGAR $100Mxn</Button>
-          </Card.Actions>
+
         </Card>
       </PaperProvider>
     </ScrollView>

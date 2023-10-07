@@ -2,11 +2,8 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "@rneui/base";
-import Login from "../../modules/auth/adapters/screens/Login";
-import CreateAccount from "../../modules/users/adapters/screens/CreateAccount";
-
 import HomeStack from "../stack/HomeSinSesionStack";
-import SearchStack from "../stack/SearchStack";
+import AsistenseStack from "../stack/AsistenseStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,8 +25,8 @@ export default function Navigation() {
           options={{ title: "Productos" }}
         />
         <Tab.Screen
-          name="login"
-          component={Login}
+          name="asistente"
+          component={AsistenseStack}
           options={{ title: "Asistencia" }}
         />
       </Tab.Navigator>
@@ -40,17 +37,11 @@ export default function Navigation() {
 const screenOptions = (route, color) => {
   let iconName;
   switch (route.name) {
-    case "login":
+    case "asistente":
       iconName = "chat";
       break;
-    // case 'createAccount':
-    //     iconName = 'account-plus-outline'
-    //     break
     case "home":
       iconName = "card-bulleted-outline";
-      break;
-    case "buscar":
-      iconName = "magnify";
       break;
     default:
       break;

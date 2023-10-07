@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ScrollView, Text } from "react-native";
+import { StyleSheet,ScrollView, Text } from "react-native";
 import { Button, Card } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
