@@ -17,11 +17,18 @@ export default function PayScreen() {
   const goProductoScreen = () => {
     navigation.navigate("homeStack");
   };
+
   const [visible, setVisible] = React.useState(false);
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
   const containerStyle = { backgroundColor: "white", padding: 20 };
+
+  const [visibleCard, setVisibleCard] = React.useState(false);
+
+  const showModalCard = () => setVisibleCard(true);
+  const hideModalCard = () => setVisibleCard(false);
+  const containerStyleCard = { backgroundColor: "white", padding: 20 };
 
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
@@ -89,7 +96,102 @@ export default function PayScreen() {
                             goProductoScreen();
 
                             // Redirigir a la pantalla de Productos después de aceptar la alerta
-                            navigation.navigate("Productos"); // Reemplaza "Productos" con el nombre de tu pantalla de productos
+                            navigation.navigate("homeStack"); // Reemplaza "Productos" con el nombre de tu pantalla de productos
+                          },
+                        },
+                      ]
+                    );
+                  }}
+                >
+                  Pagar
+                </Button>
+              </View>
+            </View>
+          </Modal>
+        </Portal>
+
+        <Portal>
+          <Modal
+            visible={visibleCard}
+            onDismiss={hideModalCard}
+            contentContainerStyle={containerStyleCard}
+          >
+            <Text>PAGO CON TARJETA</Text>
+
+            <View>
+              <Text style={{ marginVertical: 10 }}>Nombre en la tarjeta</Text>
+              <Input
+                placeholder="Nombre como aparece en la tarjeta"
+                containerStyle={styles.input}
+                autoCapitalize="none"
+              />
+              <Text style={{ marginVertical: 10 }}>Número de tarjeta</Text>
+              <Input
+                placeholder="0000 0000 0000 0000"
+                keyboardType="email-address"
+                containerStyle={styles.input}
+                autoCapitalize="none"
+                rightIcon={
+                  <View style={styles.iconContainer}>
+                    <Icon
+                      name="credit-card"
+                      type="material-community"
+                      size={24}
+                      color="blue"
+                    />
+                  </View>
+                }
+              />
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <View style={{ flex: 1 }}>
+                  <Text style={{ marginVertical: 10 }}>Expedicion</Text>
+                  <Input placeholder="AA/MM" autoCapitalize="none" />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ marginVertical: 10 }}>
+                    Codigo de seguridad
+                  </Text>
+                  <Input placeholder="CCV" autoCapitalize="none" />
+                </View>
+              </View>
+            </View>
+
+            {/* Envuelve el bloque de texto y botones en un View */}
+            <View style={{ marginVertical: 15 }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Button
+                  mode="contained"
+                  onPress={hideModalCard}
+                  style={{ marginRight: 10 }}
+                >
+                  Cancelar
+                </Button>
+                <Button
+                  mode="contained"
+                  onPress={() => {
+                    // Mostrar la alerta al hacer clic en el botón "Pagar"
+                    Alert.alert(
+                      "Pago realizado con exito",
+                      "Gracias por comprar nuestros servicios y darnos tu confianza.",
+                      [
+                        {
+                          text: "OK",
+                          onPress: () => {
+                            // Cierra el modal después de aceptar la alerta
+                            hideModalCard();
+
+                            // Redirigir a la pantalla de Productos después de aceptar la alerta
+                            navigation.navigate("homeStack");
                           },
                         },
                       ]
@@ -144,7 +246,7 @@ export default function PayScreen() {
               <Button
                 icon="credit-card"
                 mode="contained"
-                onPress={() => console.log("Tarjeta")}
+                onPress={showModalCard}
               >
                 Tarjeta
               </Button>
