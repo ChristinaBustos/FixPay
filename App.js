@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Navigation from './config/navigation/Navigation'
-import NavigationLogged from './config/navigation/NavigationLogged'
 import { app } from './config/firebase'
 import Loading from './kernel/components/Loading'
 import { getAuth } from 'firebase/auth/react-native'
