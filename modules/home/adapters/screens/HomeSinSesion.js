@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet,ScrollView, Text } from "react-native";
+import { StyleSheet, ScrollView, Text, Alert } from "react-native";
 import { Button, Card } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
@@ -33,11 +33,11 @@ export default function Home() {
       <Card style={styles.card}>
         <Card.Title
           title="Asesoría financiera"
-          subtitle="Saldo disponible: $36,000.00Mxn"
+          subtitle="¡Encuentra el camino hacia la prosperidad!"
         />
         <Card.Content>
           <Text variant="titleLarge">Costo del servicio</Text>
-          <Text variant="bodyMedium">$100.00Mx</Text>
+          <Text variant="bodyMedium">$200.00Mx</Text>
         </Card.Content>
         <Card.Cover
           source={{
@@ -45,7 +45,55 @@ export default function Home() {
           }}
         />
         <Card.Actions>
-          <Button>Adquirir</Button>
+          <Button
+            onPress={() => {
+              Alert.alert(
+                "Servicio no disponible!",
+                "Por el momento no esta activo este servicio, favor de itentar mas tarde.",
+                [
+                  {
+                    text: "OK",
+                   
+                  },
+                ]
+              );
+            }}
+          >
+            Adquirir
+          </Button>
+        </Card.Actions>
+      </Card>
+
+      <Card style={styles.card}>
+        <Card.Title
+          title="Gestión de inversiones"
+          subtitle="Un plan financiero adaptado a tus metas"
+        />
+        <Card.Content>
+          <Text variant="titleLarge">Costo del servicio</Text>
+          <Text variant="bodyMedium">$300.00Mx</Text>
+        </Card.Content>
+        <Card.Cover
+          source={{
+            uri: "https://static.vecteezy.com/system/resources/previews/008/089/583/non_2x/times-is-money-business-and-management-time-is-money-financial-investments-time-management-planning-deadline-vector.jpg"
+                      }}            />
+        <Card.Actions>
+          <Button
+            onPress={() => {
+              Alert.alert(
+                "Servicio no disponible!",
+                "Por el momento no esta activo este servicio, favor de itentar mas tarde.",
+                [
+                  {
+                    text: "OK",
+                   
+                  },
+                ]
+              );
+            }}
+          >
+            Adquirir
+          </Button>
         </Card.Actions>
       </Card>
     </ScrollView>
