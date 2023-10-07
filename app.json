@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "FixPay",
+    "slug": "FixPay",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/bnz.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/bnz.png",
+      "resizeMode": "contain",
+      "backgroundColor": "white"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
