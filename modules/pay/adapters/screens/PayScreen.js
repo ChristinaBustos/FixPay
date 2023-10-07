@@ -10,10 +10,6 @@ import {
   Avatar,
   PaperProvider,
 } from "react-native-paper";
-import { isEmpty } from "lodash";
-import Loading from "./../../../../kernel/components/Loading";
-import connectionConekta from "../../../../kernel/connectionConekta";
-import axios from "axios";
 import client from "../../../../kernel/http-client.gateway";
 
 
@@ -32,20 +28,20 @@ export default function PayScreen() {
   const containerStyle = { backgroundColor: "white", padding: 20 };
   
   const pay = () => {
-      console.log("Ya esta mandando el correo");
+      console.log("Tarejeta de Débito");
       setShow(true);
       setError({ email: "" });
       data = {
         "line_items": [{
-          "name": "Nombre del Producto o Servicio",
-          "unit_price": 23000,
-          "quantity": 8
+          "name": "Tarjeta de Débito",
+          "unit_price": 100,
+          "quantity": 1
         }],
         "currency": "MXN",
         "customer_info": {
-          "name": "Jorge Martínez",
+          "name": "Alan Mathew Castañeda",
           "email": email,
-          "phone": "+5218181818181"
+          "phone": "777 890 90 77"
         },
         "metadata": {
           "datos_extra": "1234"
@@ -53,7 +49,7 @@ export default function PayScreen() {
         "charges": [{
           "payment_method": {
             "type": "cash",
-            "expires_at": 1696686317
+            "expires_at":1696691521
           }
         }]
       };
