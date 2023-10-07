@@ -11,6 +11,7 @@ import {
   PaperProvider,
 } from "react-native-paper";
 import client from "../../../../kernel/http-client.gateway";
+import { gray } from "color-name";
 
 
 export default function PayScreen() {
@@ -71,6 +72,7 @@ export default function PayScreen() {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
+     
       <PaperProvider>
         <Portal>
           <Modal
@@ -78,7 +80,7 @@ export default function PayScreen() {
             onDismiss={hideModal}
             contentContainerStyle={containerStyle}
           >
-            <Text>PAGO EN EFECTIVO</Text>
+           <Text style={{  paddingVertical: 4,fontWeight: "bold", fontSize: 20 }}>PAGO EN EFECTIVO</Text>
 
             <View>
               <Image
@@ -153,25 +155,31 @@ export default function PayScreen() {
           </Modal>
         </Portal>
 
+      {/* Pago con Tarjeta */}
         <Portal>
           <Modal
             visible={visibleCard}
             onDismiss={hideModalCard}
             contentContainerStyle={containerStyleCard}
           >
-            <Text>PAGO CON TARJETA</Text>
-
+           <Text style={{ fontWeight: "bold", fontSize: 20 }}>PAGO CON TARJETA</Text>
+            <Image
+                source={require("../../../../assets/Cards.jpg")}
+                style={{ marginVertical: 5, width: 250, height: 60, marginRight: 10 }}
+              />
             <View>
               <Text style={{ marginVertical: 10 }}>Nombre en la tarjeta</Text>
               <Input
+              maxLength={50}
                 placeholder="Nombre como aparece en la tarjeta"
                 containerStyle={styles.input}
                 autoCapitalize="none"
               />
               <Text style={{ marginVertical: 10 }}>Número de tarjeta</Text>
               <Input
+              maxLength={20}
                 placeholder="0000 0000 0000 0000"
-                keyboardType="email-address"
+                keyboardType="numeric"
                 containerStyle={styles.input}
                 autoCapitalize="none"
                 rightIcon={
@@ -193,13 +201,13 @@ export default function PayScreen() {
               >
                 <View style={{ flex: 1 }}>
                   <Text style={{ marginVertical: 10 }}>Expedicion</Text>
-                  <Input placeholder="AA/MM" autoCapitalize="none" />
+                  <Input maxLength={7} keyboardType="numeric" placeholder="AA/MM" autoCapitalize="none" />
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={{ marginVertical: 10 }}>
                     Codigo de seguridad
                   </Text>
-                  <Input placeholder="CCV" autoCapitalize="none" />
+                  <Input maxLength={3} keyboardType="numeric" placeholder="CCV" autoCapitalize="none" />
                 </View>
               </View>
             </View>
@@ -249,8 +257,12 @@ export default function PayScreen() {
         </Portal>
 
         <Card style={styles.card}>
+          <Card.Title title="ADQUISICIÓN DE UN SERVICIO"/>
+        </Card>
+
+        <Card style={styles.card}>
           <Card.Title
-            title="Tarjeta de crédito"
+            title="SERVICIO: Tarjeta de crédito"
             subtitle="Saldo disponible: $36,000.00Mxn"
           />
           <Card.Content>
@@ -281,7 +293,7 @@ export default function PayScreen() {
           <Card.Content>
             <Text variant="titleLarge">Selecciona un método de pago</Text>
             <View
-              style={{ paddingVertical: 20,flexDirection: "row", justifyContent: "space-between" }}
+              style={{ paddingVertical: 10,flexDirection: "row", justifyContent: "space-between" }}
             >
               <Button  icon="cash" mode="contained" onPress={showModal}>
                 Efectivo
@@ -309,7 +321,7 @@ const styles = StyleSheet.create({
     borderColor: "#93E1E5", // Cambia esto al color de borde que desees
     borderRadius: 10,
     overflow: "hidden",
-    margin: 16, // Margen alrededor de la tarjeta
+    margin: 10, // Margen alrededor de la tarjeta
   },
   coverImage: {
     margin: 16, // Margen alrededor de la imagen
@@ -317,6 +329,6 @@ const styles = StyleSheet.create({
 
   input: {
     width: "100%",
-    marginVertical: 5,
+    marginVertical: 3,
   },
 });

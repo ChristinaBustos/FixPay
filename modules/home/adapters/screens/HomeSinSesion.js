@@ -49,7 +49,7 @@ export default function Home() {
             onPress={() => {
               Alert.alert(
                 "Servicio no disponible!",
-                "Por el momento no esta activo este servici, favor de itentar mas tarde.",
+                "Por el momento no esta activo este servicio, favor de itentar mas tarde.",
                 [
                   {
                     text: "OK",
@@ -71,18 +71,18 @@ export default function Home() {
         />
         <Card.Content>
           <Text variant="titleLarge">Costo del servicio</Text>
-          <Text variant="bodyMedium">$150.00Mx</Text>
+          <Text variant="bodyMedium">$300.00Mx</Text>
         </Card.Content>
         <Card.Cover
           source={{
-            uri: "https://www.pngwing.com/es/free-png-tvhsp"
+            uri: "https://static.vecteezy.com/system/resources/previews/008/089/583/non_2x/times-is-money-business-and-management-time-is-money-financial-investments-time-management-planning-deadline-vector.jpg"
                       }}            />
         <Card.Actions>
           <Button
             onPress={() => {
               Alert.alert(
                 "Servicio no disponible!",
-                "Por el momento no esta activo este servici, favor de itentar mas tarde.",
+                "Por el momento no esta activo este servicio, favor de itentar mas tarde.",
                 [
                   {
                     text: "OK",
