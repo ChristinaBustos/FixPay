@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, ScrollView, StyleSheet, Alert } from "react-native";
 import { Image, Input, Icon } from "@rneui/base";
@@ -10,18 +10,61 @@ import {
   Avatar,
   PaperProvider,
 } from "react-native-paper";
+import { isEmpty } from "lodash";
+import Loading from "./../../../../kernel/components/Loading";
+import connectionConekta from "../../../../kernel/connectionConekta";
+import axios from "axios";
+import client from "../../../../kernel/http-client.gateway";
+
 
 export default function PayScreen() {
   const navigation = useNavigation();
-
   const goProductoScreen = () => {
     navigation.navigate("homeStack");
   };
   const [visible, setVisible] = React.useState(false);
-
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState({ email: "" });
+  const [show, setShow] = useState(false);
+  const [conektaData, setConektadata] = useState("");
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
   const containerStyle = { backgroundColor: "white", padding: 20 };
+  
+  const pay = () => {
+      console.log("Ya esta mandando el correo");
+      setShow(true);
+      setError({ email: "" });
+      data = {
+        "line_items": [{
+          "name": "Nombre del Producto o Servicio",
+          "unit_price": 23000,
+          "quantity": 8
+        }],
+        "currency": "MXN",
+        "customer_info": {
+          "name": "Jorge Martínez",
+          "email": email,
+          "phone": "+5218181818181"
+        },
+        "metadata": {
+          "datos_extra": "1234"
+        },
+        "charges": [{
+          "payment_method": {
+            "type": "cash",
+            "expires_at": 1696686317
+          }
+        }]
+      };
+      try {
+        client.doPost('/orders',data)
+      } catch (error) {
+        console.log('AAAAAAAaa')
+      }
+      
+    }      
+  
 
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
@@ -43,10 +86,12 @@ export default function PayScreen() {
                 placeholder="Correo electronico"
                 keyboardType="email-address"
                 containerStyle={styles.input}
+                onChange={(event) => setEmail(event.nativeEvent.text)}
+                errorMessage={error.email}
+                autoCapitalize="none"
                 rightIcon={
                   <Icon type="material-community" name="email" size={22} />
                 }
-                autoCapitalize="none"
               />
               <Text style={{ textAlign: "justify" }}>
                 Enviaremos una referencia de pago a tu correo para que puedas
@@ -55,8 +100,9 @@ export default function PayScreen() {
               </Text>
 
               <Text style={{ color: "red", textAlign: "justify" }}>
-                *La referencia solo dura una hora del día de hoy
+                *La referencia solo dura una hora del día en curso
               </Text>
+              
             </View>
 
             {/* Envuelve el bloque de texto y botones en un View */}
@@ -77,6 +123,7 @@ export default function PayScreen() {
                 <Button
                   mode="contained"
                   onPress={() => {
+                    pay(); 
                     // Mostrar la alerta al hacer clic en el botón "Pagar"
                     Alert.alert(
                       "Referencia de pago enviada al correo electronico proporcionado",
